@@ -1,0 +1,59 @@
+﻿@model IEnumerable<syndicateApp.Models.TblPost>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PostCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MetaData)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MetaData)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdNo">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdNo">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdNo">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
