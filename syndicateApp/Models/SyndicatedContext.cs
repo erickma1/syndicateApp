@@ -25,13 +25,11 @@ public partial class SyndicatedContext : DbContext
     {
         modelBuilder.Entity<TblPost>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("tbl_posts");
+            entity.HasKey(e => e.IdNo);
 
-            entity.Property(e => e.IdNo)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("id_no");
+            entity.ToTable("tbl_posts");
+
+            entity.Property(e => e.IdNo).HasColumnName("id_no");
             entity.Property(e => e.IsActive).HasColumnName("is_active");
             entity.Property(e => e.MetaData)
                 .HasMaxLength(50)
