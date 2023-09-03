@@ -1,0 +1,53 @@
+﻿@model syndicateApp.Models.TblPost
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TblPost</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PostCategory" class="control-label"></label>
+                <input asp-for="PostCategory" class="form-control" />
+                <span asp-validation-for="PostCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostText" class="control-label"></label>
+                <input asp-for="PostText" class="form-control" />
+                <span asp-validation-for="PostText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostImage" class="control-label"></label>
+                <input asp-for="PostImage" class="form-control" />
+                <span asp-validation-for="PostImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsActive" class="control-label"></label>
+                <input asp-for="IsActive" class="form-control" />
+                <span asp-validation-for="IsActive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MetaData" class="control-label"></label>
+                <input asp-for="MetaData" class="form-control" />
+                <span asp-validation-for="MetaData" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
