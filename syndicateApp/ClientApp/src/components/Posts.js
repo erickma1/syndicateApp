@@ -5,44 +5,55 @@ export class Posts extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            posts: [], // Initialize 'posts' as an empty array
-        };
+        this.state = { forecasts: [], loading: true };
     }
 
     componentDidMount() {
-        // Fetch data from your ASP.NET Core controller's API endpoint.
-        fetch('/api/TblPosts')
-            .then((response) => response.json())
-            .then((data) => this.setState({ posts: data }))
-            .catch((error) => console.error('Error fetching data:', error));
+        this.populateWeatherData();
+    }
+
+    static renderForecastsTable(forecasts) {
+        return (
+            <table className='table table-striped' aria-labelledby="tabelLabel">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Temp. (C)</th>
+                        <th>Temp. (F)</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {forecasts.map(forecast =>
+                        <tr key={forecast.IdNo}>
+                            <td>{forecast.PostText}</td>
+                            <td>{forecast.PostText}</td>
+                            <td>{forecast.PostText}</td>
+                            <td>{forecast.PostText}</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+        );
     }
 
     render() {
-        const { posts } = this.state;
+        let contents = this.state.loading
+            ? <p><em>Loading...</em></p>
+            : Posts.renderForecastsTable(this.state.forecasts);
 
         return (
             <div>
-                <h1>Posts</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>PostCategory</th>
-                            <th>PostText</th>
-                            {/* Add more table headers as needed */}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {posts.map((post) => (
-                            <tr key={post.idNo}>
-                                <td>{post.postCategory}</td>
-                                <td>{post.postText}</td>
-                                {/* Add more table cells as needed */}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <h1 id="tabelLabel" >Weather forecast</h1>
+                <p>This component demonstrates fetching data from the server.</p>
+                {contents}
             </div>
         );
+    }
+
+    async populateWeatherData() {
+        const response = await fetch('Index');
+        const data = await response.json();
+        this.setState({ forecasts: data, loading: false });
     }
 }
