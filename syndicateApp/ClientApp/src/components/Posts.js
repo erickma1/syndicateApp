@@ -52,7 +52,7 @@ export class Posts extends Component {
     }
 
     async populateWeatherData() {
-        const response = await fetch('Index');
+        const response = await fetch('TblPosts');
         const data = await response.json();
         this.setState({ forecasts: data, loading: false });
     }
