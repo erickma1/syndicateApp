@@ -1,2 +1,2 @@
 # syndicateApp
-Syndicate news from leading websites
+Syndicate news from leading websites across the world
